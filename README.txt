@@ -22,24 +22,38 @@ The dataframe includes the following columns:
 	'sentiment_score': sentiment score assigned by Rubert-tiny
 
 Files related to scraping:
+Input:
 	js_scraper.py
 	news_scraper.ipynb
+Output:
 	2760.js
-	corpus.pkl (can be dowloaded from dataverse)
+	corpus.pkl (needs to be dowloaded from dataverse, the link is above)
 
 2. Preprocessing: Labelling
 
 The preprocessing was also conducted in two stages. Ruber-tiny (in Python) was used to assign 'sentiment label' (positive, negative, or neutral) and ''sentiment score'. Newsmap (in R) was used to assign country-topics.
 
-2.1. Labelling with Ruber-tiny
+The file published on dataverse (
+
+2.1. File preparation stage
+
+Input:
+	corpus.pkl (can be dowloaded from dataverse)
+	preprocessing.ipynb
+
+Output:
+	corpus_for_rubert.pkl
+	corpus_for_newsmap.feather
+
+2.2. Labelling with Ruber-tiny
 
 The file corpus.pkl has been labelled by Rubert-tiny.
-The process required approximately 8 hours to execute.
+The process required approximately 8 hours to execute. Update: It took 9.5 hours last time, but the machine was running other processes simultaneously.
 
 Files related to the labelling:	
 	rubert.py
 
-2.2. Labelling with Newsmap
+2.3. Labelling with Newsmap
 
 The file corpus.pkl was saved as a Feather file to be readable in R (the code to save a pickled file to a Feather file is provided in the last line of analysis.ipynb). Following that, the file was labeled by Newsmap in R. Please note that the labels were assigned based on a larger dataset (spanning from 1998-12-23 until 2022-06-20). Following the comments by the reviewers, the dataset was trimmed to a shorter period (from 1999-12-31 until 2022-02-23). Further checks suggest that training Newsmap for this shorter period results in slightly different labels (2% of mismatches with the original labels).
 
@@ -47,6 +61,10 @@ The process required approximately 37 minutes to execute.
 Files related to the labelling:
 	newsmap_training.R
 	cities.csv (dictionary)
+
+2.4. Comparing labels
+
+The stage below explains how to compare the lables created by Rubert-tiny and Newsmap.
 
 3. Analysis
 
