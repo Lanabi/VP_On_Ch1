@@ -25,7 +25,6 @@ The dataframe includes the following columns:
 	'sentiment_labels': sentiment-label assigned by Rubert-tiny
 	'sentiment_score': sentiment score assigned by Rubert-tiny
 
-Files related to scraping:
 Input:
 	js_scraper.py
 	news_scraper.ipynb
@@ -60,6 +59,9 @@ Output:
 
 2.3. Labelling with Newsmap
 
+To reproduce the labelling, please open newsmap_training.R and follow the instructions.
+The process required approximately 30 minutes to execute. Avoiding running additional computationally-heavy processes simultaneously will speed up the time.
+
 Input:
 	for_newsmap.feather
 	newsmap_training.R
@@ -67,10 +69,7 @@ Input:
 Output:
 	from_newsmap.feather
 
-To reproduce the labelling, please open newsmap_training.R and follow the instructions.
-The process required approximately 30 minutes to execute. Avoiding running additional computationally-heavy processes simultaneously will speed up the time.
-
-About the labelling:
+About the labelling with Newsmap:
 
 The file corpus.pkl was saved as a Feather file for readability in R (the code to save a pickled file to a Feather file is provided in the last line of analysis.ipynb). Following that, the file was labeled by Newsmap in R. Please note that the labels were assigned based on a larger dataset spanning from 1998-12-23 until 2022-06-20.
 
@@ -78,7 +77,7 @@ Following the comments by the reviewers, the original dataset was trimmed to a s
 
 Additionally, because all validation was based on random selection, I will need to re-validate the model. Since a model trained on a larger dataset is expected to produce more accurate and precise results, and because additional validation will require more time and resporces, I have decided to wait for the editor's comments. However, I am happy to comply with any requests regarding this matter.
 
-2.4. Comparing labels
+2.4. Comparing the labels
 
 The dataset published on Dataverse (corpus.pkl) already has labels assigned by Rubert-tiny and Newsmap. To compare these labels with those obtained in previous stages, please execute check.ipynb and follow the instructions.
 
