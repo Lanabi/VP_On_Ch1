@@ -71,11 +71,10 @@ Output:
 
 About the labelling with Newsmap:
 
-The file corpus.pkl was saved as a Feather file for readability in R (the code to save a pickled file to a Feather file is provided in the last line of analysis.ipynb). Following that, the file was labeled by Newsmap in R. Please note that the labels were assigned based on a larger dataset spanning from 1998-12-23 until 2022-06-20.
+Please note that the labels were assigned based on a larger dataset spanning from 1998-12-23 until 2022-06-20.
+Following the comments by the reviewers, the original dataset was trimmed to a shorter period from 1999-12-31 until 2022-02-23. Further checks suggest that training Newsmap for this shorter period results in slightly different labels (2% mismatches with the original labels). I am aware of this discrepancy and am happy to substitute the data labeled on the larger dataset with the data labeled on the smaller dataset (i.e., to re-label the data and to reproduce the figures and tables). Based on my checks, none of the results presented in the paper will be significantly influenced by the substitution, although some estimates may change insignificantly.
 
-Following the comments by the reviewers, the original dataset was trimmed to a shorter period from 1999-12-31 until 2022-02-23. Further checks suggest that training Newsmap for this shorter period results in slightly different labels (2% mismatches with the original labels). I am aware of this discrepancy and am happy to substitute the data labeled on the larger dataset with the data labeled on the smaller dataset. None of the results will be significantly influenced by the substitution, although some estimates may change insignificantly.
-
-Additionally, because all validation was based on random selection, I will need to re-validate the model. Since a model trained on a larger dataset is expected to produce more accurate and precise results, and because additional validation will require more time and resporces, I have decided to wait for the editor's comments. However, I am happy to comply with any requests regarding this matter.
+However, if I choose to substitute the original labels with the labels obtained by training on a smaller data, because all validation was based on random selection, I will (probably?) need to re-validate the model. Since a model trained on a larger dataset is expected to produce more accurate and precise results, and because additional validation will require more time and resporces, I have decided to wait for the editor's comments. However, I am happy to comply with any requests regarding this matter.
 
 2.4. Comparing the labels
 
