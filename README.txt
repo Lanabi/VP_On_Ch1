@@ -35,53 +35,71 @@ Output:
 
 2. Preprocessing: Labelling
 
-The preprocessing was also conducted in two stages. Ruber-tiny (in Python) was used to assign 'sentiment label' (positive, negative, or neutral) and ''sentiment score'. Newsmap (in R) was used to assign country-topics.
-
-Below, I explain how to reporduct the labelling
+The preprocessing was also conducted in two stages. Ruber-tiny (in Python) was used to assign 'sentiment label' (positive, negative, or neutral) and ''sentiment score'. Newsmap (in R) was used to assign country-topics. The sections below explain how to reporduce the labelling.
 
 2.1. File preparation 
 
-To reproduce the labeling, you will need to create two files: 'corpus_for_newsmap.feather' and 'corpus_for_rubert.pkl'. These files can be created using the dataset downloaded from Dataverse (corpus.pkl) and preprocessing.ipynb. Please open preprocessing.ipynb and follow the instructions.
+To reproduce the labeling, you will need to create two files: 'for_rubert.pkl' and 'for_newsmap.feather'. These can be created using the corpus downloaded from Dataverse (corpus.pkl) and preprocessing.ipynb. Please open preprocessing.ipynb and follow the instructions.
 
 Input:
 	corpus.pkl (can be dowloaded from dataverse)
 	preprocessing.ipynb
-
 Output:
-	corpus_for_rubert.pkl
-	corpus_for_newsmap.feather
+	for_rubert.pkl
+	for_newsmap.feather
 
 2.2. Labelling with Ruber-tiny
 
-The script for labelling with r
+The file corpus.pkl has been labelled by Rubert-tiny. The process required approximately 8 hours to execute. Update: It took 9.5 hours last time, but the machine was running several other processes simultaneously. I used PyCharm to edit and execute the rubert.py, but you can use any editor of your choice.
 
-The file corpus.pkl has been labelled by Rubert-tiny.
-The process required approximately 8 hours to execute. Update: It took 9.5 hours last time, but the machine was running other processes simultaneously.
-
-Files related to the labelling:	
+Input:
 	rubert.py
+	for_rubert.pkl
+Output:
+	from_rubert.pkl
 
 2.3. Labelling with Newsmap
 
-The file corpus.pkl was saved as a Feather file to be readable in R (the code to save a pickled file to a Feather file is provided in the last line of analysis.ipynb). Following that, the file was labeled by Newsmap in R. Please note that the labels were assigned based on a larger dataset (spanning from 1998-12-23 until 2022-06-20). Following the comments by the reviewers, the dataset was trimmed to a shorter period (from 1999-12-31 until 2022-02-23). Further checks suggest that training Newsmap for this shorter period results in slightly different labels (2% of mismatches with the original labels).
-
-The process required approximately 37 minutes to execute.
-Files related to the labelling:
+Input:
+	for_newsmap.feather
 	newsmap_training.R
-	cities.csv (dictionary)
+	cities.csv
+Output:
+	from_newsmap.feather
+
+To reproduce the labelling, please open newsmap_training.R and follow the instructions.
+The process required approximately 30 minutes to execute. Avoiding running additional computationally-heavy processes simultaneously will speed up the time.
+
+About the labelling:
+
+The file corpus.pkl was saved as a Feather file for readability in R (the code to save a pickled file to a Feather file is provided in the last line of analysis.ipynb). Following that, the file was labeled by Newsmap in R. Please note that the labels were assigned based on a larger dataset spanning from 1998-12-23 until 2022-06-20.
+
+Following the comments by the reviewers, the original dataset was trimmed to a shorter period from 1999-12-31 until 2022-02-23. Further checks suggest that training Newsmap for this shorter period results in slightly different labels (2% mismatches with the original labels). I am aware of this discrepancy and am happy to substitute the data labeled on the larger dataset with the data labeled on the smaller dataset. None of the results will be significantly influenced by the substitution, although some estimates may change insignificantly.
+
+Additionally, because all validation was based on random selection, I will need to re-validate the model. Since a model trained on a larger dataset is expected to produce more accurate and precise results, and because additional validation will require more time and resporces, I have decided to wait for the editor's comments. However, I am happy to comply with any requests regarding this matter.
 
 2.4. Comparing labels
 
-The stage below explains how to compare the lables created by Rubert-tiny and Newsmap.
+The dataset published on Dataverse (corpus.pkl) already has labels assigned by Rubert-tiny and Newsmap. To compare these labels with those obtained in previous stages, please execute check.ipynb and follow the instructions.
 
+Input:
+	from_rubert.pkl
+	from_newsmap.feather
+	check.ipynb
+	corpus.pkl
+Output:
+	check.ipynb
+	
 3. Analysis
 
 The analysis, including the figures, tables, and other numbers reported in the article and the appendix, can be reproduced with the file 'analysis.ipynb'. The file also provides an overview of the dataset. 
 
-Related files:
+Input:
 	analysis.ipynb
 	corpus.pkl
 	validation.csv
+Output:
+	analysis.ipynb
 
 4. Environment
 
