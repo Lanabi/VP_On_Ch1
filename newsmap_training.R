@@ -11,9 +11,9 @@ library(readr)     # For reading delimited files (CSV)
 # Get the current working directory
 current_dir <- getwd()
 # Define paths
-path_to_open <- file.path(current_dir, "full_corpus.feather")
+path_to_open <- file.path(current_dir, "for_newsmap.feather")
 path_to_dict <- file.path(current_dir, "cities.csv")
-path_to_save <- file.path(current_dir, "full_corpus_predicted.feather")
+path_to_save <- file.path(current_dir, "from_newsmap.feather")
 # Upload the corpus
 dat <- arrow::read_feather(path_to_open)
 # Create a corpus from the data 'dat', using the 'text' field
