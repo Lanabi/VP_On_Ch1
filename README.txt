@@ -2,6 +2,10 @@ The instruction below outlines:
 
 	1. Preprocessing: Scarping
 	2. Preprocessing: Labelling
+		2.1. File preparation
+		2.2. Labelling with Ruber-tiny
+		2.3. Labelling with Newsmap
+		2.4. Comparing the labels
 	3. Analysis 
 	4. Environment
 
@@ -33,9 +37,11 @@ Output:
 
 The preprocessing was also conducted in two stages. Ruber-tiny (in Python) was used to assign 'sentiment label' (positive, negative, or neutral) and ''sentiment score'. Newsmap (in R) was used to assign country-topics.
 
-The file published on dataverse (
+Below, I explain how to reporduct the labelling
 
-2.1. File preparation stage
+2.1. File preparation 
+
+To reproduce the labeling, you will need to create two files: 'corpus_for_newsmap.feather' and 'corpus_for_rubert.pkl'. These files can be created using the dataset downloaded from Dataverse (corpus.pkl) and preprocessing.ipynb. Please open preprocessing.ipynb and follow the instructions.
 
 Input:
 	corpus.pkl (can be dowloaded from dataverse)
@@ -46,6 +52,8 @@ Output:
 	corpus_for_newsmap.feather
 
 2.2. Labelling with Ruber-tiny
+
+The script for labelling with r
 
 The file corpus.pkl has been labelled by Rubert-tiny.
 The process required approximately 8 hours to execute. Update: It took 9.5 hours last time, but the machine was running other processes simultaneously.
