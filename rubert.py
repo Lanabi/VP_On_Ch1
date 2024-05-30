@@ -5,10 +5,20 @@ import pandas as pd
 import numpy
 import time
 import pickle
+import os 
 
-df = pd.read_pickle("corpus.pkl") # insert a correct path
+# Get the current working directory
+current_directory = os.getcwd()
+# Construct the path to open the file file
+for_rubert = os.path.join(current_directory, "for_rubert.pkl")
+# Construct the path to save the output file 
+from_rubert_path = os.path.join(current_directory, "from_rubert.pkl")
+
+# Open the file
+df = pd.read_pickle(for_rubert) 
 texts = df['text']
 
+# Labelling
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 model_checkpoint = 'cointegrated/rubert-tiny-sentiment-balanced'
 tokenizer = AutoTokenizer.from_pretrained(model_checkpoint)
@@ -26,11 +36,9 @@ def get_sentiment(text, return_type='label'):
     return proba
 
 # Classify the text
-
 labels = [get_sentiment(i, 'label') for i in texts]
 
 # Score the text on the scale from -1 (very negative) to +1 (very positive)
-
 score = [get_sentiment(i, 'score') for i in texts]
 # calculate probabilities of all labels
 predictions1 = [get_sentiment(i, 'proba')[0] for i in texts]
@@ -40,6 +48,5 @@ predictions3 = [get_sentiment(i, 'proba')[2] for i in texts]
 df['labels'] = labels
 df['score'] = score
 
-# Save an updated dataframe
-df.to_pickle( ) # insert a correct path
-
+# Save the labelled dataframe
+df.to_pickle(from_rubert_path) 
